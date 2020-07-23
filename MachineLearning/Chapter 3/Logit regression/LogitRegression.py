@@ -18,22 +18,26 @@ class LogisticRegression(object):
         for i in range(self.max_iter):
             self._update_step()
 
-
+    # ——————————————————————————————————————————————
+    # 线性函数与几率函数的计算步骤
     def _sigmoid(self, z):
         return 1.0 / (1.0 + np.exp(-z))
 
     # 线性函数在z = x·w+b
-    # 对结果 z 取对率
+    # 对结果 z 取对率使用私有方法 _sigmoid()
     def _f(self, x, w, b):
         z = x.dot(w) + b
         return self._sigmoid(z)
+    # ———————————————————————————————————————————————
 
+    # predict_proba() 输出的是对率函数的值
     def predict_proba(self, x=None):
         if x is None:
             x = self.x
         y_pred = self._f(x, self.w, self.b)
         return y_pred
 
+    # 与 prefict_proba() 不同，prefict()方法输出的是将对率结果以0.5 做截断点后的二分类结果
     def predict(self, x=None):
         if x is None:
             x = self.x
@@ -41,6 +45,7 @@ class LogisticRegression(object):
         y_pred = np.array([0 if y_pred_proba[i] < 0.5 else 1 for i in range(len(y_pred_proba))])
         return y_pred
 
+    # 计算准确率，将输入的y 和 计算的得到y_pred 进行比较
     def score(self, y_true=None, y_pred=None):
         if y_true is None or y_pred is None:
             y_true = self.y
@@ -48,6 +53,7 @@ class LogisticRegression(object):
         acc = np.mean([1 if y_true[i] == y_pred[i] else 0 for i in range(len(y_true))])
         return acc
 
+    #
     def loss(self, y_true=None, y_pred_proba=None):
         if y_true is None or y_pred_proba is None:
             y_true = self.y
@@ -60,6 +66,7 @@ class LogisticRegression(object):
         d_b = np.mean(y_pred - self.y)
         return d_w, d_b
 
+    # 更新w 和 b
     def _update_step(self):
         d_w, d_b = self._calc_gradient()
         self.w = self.w - self.lr * d_w
