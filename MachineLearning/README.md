@@ -10,7 +10,8 @@
 
 #### [/Chapter3](./Chapter3)
 
-- [LogitRegression](./Chapter3/LogitRegression)
+- [Logit Regression](./Chapter3/LogitRegression)
+- [Linear Discriminant Analysis](./Chapter3/LinearDiscriminant)
 
 #### [/Datasets](./Datasets)
 
