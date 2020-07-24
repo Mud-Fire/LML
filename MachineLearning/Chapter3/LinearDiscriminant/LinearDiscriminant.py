@@ -29,21 +29,26 @@ class LinearDiscriminant(object):
         u1 = self.mean_u(x1)
         u = self.mean_u(np.vstack((x0, x1)))
         return (u0 - u1).T * (u0 - u1)
+        # return (u - u0).T * (u - u0) + (u - u1).T * (u - u1)
 
     def LDA(self, x0, x1):
         sw = self.Si(x0) + self.Si(x1)
         sb = self.Sb(x0, x1)
-        # print(sw)
-        eigenvalue, eignvector = np.linalg.eig(sw.I * sb)
-        # 这里看一下使用np.lilnalg.eig()方法后的特征向量是横的还是竖的存储的
-        # 特征向量是对应得列向量
-        # print("sw.I * sb\t:\n", sw.I * sb)
-        # print("eigenvalue\t:\n", eigenvalue)
-        # print("eignvector\t:\n", eignvector)
-        # print(sw.I * sb * eignvector[:, eignvector.argmax()-1 ])
-        # print(eigenvalue[eignvector.argmax()-1, ].T * eignvector[: ,eignvector.argmax()-1])
 
-        return eignvector[:, eignvector.argmax() - 1]
+        # 二分类任务求w
+        return sw.I * (self.mean_u(x0)-self.mean_u(x1)).T
+
+        # 多分类任务 w求解
+        # eigenvalue, eignvector = np.linalg.eig(sw.I * sb)
+        # # 这里看一下使用np.lilnalg.eig()方法后的特征向量是横的还是竖的存储的
+        # # 特征向量是对应得列向量
+        # # print("sw.I * sb\t:\n", sw.I * sb)
+        # # print("eigenvalue\t:\n", eigenvalue)
+        # # print("eignvector\t:\n", eignvector)
+        # # print(sw.I * sb * eignvector[:, eignvector.argmax()-1 ])
+        # # print(eigenvalue[eignvector.argmax()-1, ].T * eignvector[: ,eignvector.argmax()-1])
+        #
+        # return eignvector[:, eignvector.argmax() - 1]
 
 
 if __name__ == '__main__':
