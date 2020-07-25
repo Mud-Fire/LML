@@ -3,6 +3,7 @@ import requests
 import pickle
 import gzip
 from matplotlib import pyplot
+import pylab
 import numpy as np
 
 # 准备数据
@@ -24,4 +25,5 @@ with gzip.open((PATH / FILENAME).as_posix(), "rb") as f:
 
 # 查看数据
 pyplot.imshow(x_train[0].reshape((28, 28)), cmap="gray")
+pylab.show()  # pycharm 要用下pylab才能显示图像窗口
 print(x_train.shape)
