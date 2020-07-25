@@ -2,3 +2,4 @@
 ./pytorchExample/.idea/
 .idea
 *.pkl
+/pytorch/TrainingAClassifier/data
