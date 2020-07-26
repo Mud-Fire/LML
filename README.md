@@ -1,6 +1,6 @@
 # LML
 
-Learning Machine Learni
+Learning Machine Learning
 
 # Pytorch Example Train
 
