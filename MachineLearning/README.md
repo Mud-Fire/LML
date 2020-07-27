@@ -14,7 +14,7 @@
 - [Linear Discriminant Analysis](./Chapter3/LinearDiscriminant)
 
 #### [/Chapter4](./Chapter4)
-- [Decision Tree ID3](./Chaper4)
+- [Decision Tree ID3](./Chapter4)
 
 #### [/Datasets](./Datasets)
 
