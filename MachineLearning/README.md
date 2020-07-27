@@ -13,6 +13,9 @@
 - [Logit Regression](./Chapter3/LogitRegression)
 - [Linear Discriminant Analysis](./Chapter3/LinearDiscriminant)
 
+#### [/Chapter4](./Chapter4)
+- [Decision Tree ID3](./Chaper4)
+
 #### [/Datasets](./Datasets)
 
 - waterMelon30a.csv
