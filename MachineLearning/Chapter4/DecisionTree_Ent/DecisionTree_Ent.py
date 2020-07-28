@@ -22,7 +22,7 @@ class DecisionTree:
         # return self.model
         return self.model
 
-    def cal_Ent(self, y):
+    def cal_Gini(self, y):
         valRate = y.value_counts().apply(lambda x: x / y.size)  # 频次汇总 得到各个特征对应的概率
         valEntropy = np.inner(valRate, np.log2(valRate)) * -1
         return valEntropy
@@ -36,7 +36,7 @@ class DecisionTree:
         if yTrainCounts.size == 1:
             return yTrainCounts.index[0]
         # 计算当前递归中，传入节点的瓜的pk
-        entropyD = self.cal_Ent(yTrain)
+        entropyD = self.cal_Gini(yTrain)
         # 声明最大收益
         maxGain = None
         # 声明当前最大收益的属性节点名
