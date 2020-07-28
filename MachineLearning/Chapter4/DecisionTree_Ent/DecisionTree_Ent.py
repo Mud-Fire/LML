@@ -4,7 +4,7 @@ import pandas as pd
 
 # 准备数据，表里数据是按照课本样式存储的，这里进行一次预处理和编码操作
 def prepareData():
-    p = r'..\Datasets\waterMelon2.0.csv'
+    p = r'..\..\Datasets\waterMelon2.0.csv'
     rawdata = pd.read_csv(p, encoding="gbk")
 
     return rawdata

@@ -4,7 +4,7 @@ import pandas as pd
 
 # 准备数据，表里数据是按照课本样式存储的，这里进行一次预处理和编码操作
 def prepareData():
-    p = r'..\Datasets\waterMelon2.0.csv'
+    p = r'..\..\Datasets\waterMelon2.0_train.csv'
     rawdata = pd.read_csv(p, encoding="gbk")
 
     return rawdata
@@ -87,5 +87,6 @@ class DecisionTree:
 
 if __name__ == '__main__':
     dataset_raw = prepareData()
+    print(dataset_raw)
     wm_DT = DecisionTree()
     print(wm_DT.fit(dataset_raw))
