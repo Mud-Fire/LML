@@ -24,6 +24,18 @@ with gzip.open((PATH / FILENAME).as_posix(), "rb") as f:
     ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(f, encoding="latin-1")
 
 # 查看数据
-pyplot.imshow(x_train[0].reshape((28, 28)), cmap="gray")
+pyplot.imshow(x_train[1].reshape((28, 28)), cmap="gray")
 pylab.show()  # pycharm 要用下pylab才能显示图像窗口
 print(x_train.shape)
+
+import torch
+
+x_train, y_train, x_valid, y_valid = map(
+    torch.tensor, (x_train, y_train, x_valid, y_valid)
+)
+
+n, c = x_train.shape
+x_train, x_train.shape, y_train.min(), y_train.max()
+print(x_train, y_train)
+print(x_train.shape)
+print(y_train.min(), y_train.max())
