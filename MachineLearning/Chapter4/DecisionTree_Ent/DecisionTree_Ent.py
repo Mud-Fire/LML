@@ -33,6 +33,7 @@ class DecisionTree:
         # 好瓜坏瓜计算数量
         yTrainCounts = yTrain.value_counts()
         # 当分支的瓜仅剩一类时，递归结束，返回叶子结点结果
+        # 这里有个bug！！！！当该属性只有一个样本时，会忽略节点
         if yTrainCounts.size == 1:
             return yTrainCounts.index[0]
         # 计算当前递归中，传入节点的瓜的pk
@@ -63,7 +64,7 @@ class DecisionTree:
             if maxGain == None or gainEach > maxGain:
                 maxGain = gainEach
                 maxEntropyPropName = propName
-        print('select prop:', maxEntropyPropName, maxGain)
+        # print('select prop:', maxEntropyPropName, maxGain)
 
         # =========================================================
         # 计算出最大增益节点后，以此节点开启新的迭代
@@ -82,10 +83,12 @@ class DecisionTree:
             del xDataByPropClass[maxEntropyPropName]  # 删除已经选择的属性列
             # 以该节点向下递归
             retClassByProp[propClass] = self.buildDecisionTree(xDataByPropClass, yDataByPropClass)
+
         return {'Node': maxEntropyPropName, 'Edge': retClassByProp}
 
 
 if __name__ == '__main__':
     dataset_raw = prepareData()
+    print(dataset_raw)
     wm_DT = DecisionTree()
     print(wm_DT.fit(dataset_raw))
