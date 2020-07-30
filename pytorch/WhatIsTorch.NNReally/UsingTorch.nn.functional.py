@@ -215,3 +215,47 @@ for epoch in range(epochs):
         opt.zero_grad()
 
 print(loss_func(model(xb), yb))
+
+# ##############################################
+# Refactor using Dataset
+# ##############################################
+
+from torch.utils.data import TensorDataset
+
+train_ds = TensorDataset(x_train, y_train)
+
+model, opt = get_model()
+print(n)
+for epoch in range(epochs):
+    for i in range((n - 1) // bs + 1):
+        xb, yb = train_ds[i * bs: i * bs + bs]
+        pred = model(xb)
+        loss = loss_func(pred, yb)
+
+        loss.backward()
+        opt.step()
+        opt.zero_grad()
+
+print(loss_func(model(xb), yb))
+
+# ##############################################
+# Refactor using DataLoader
+# ##############################################
+
+from torch.utils.data import DataLoader
+
+train_ds = TensorDataset(x_train, y_train)
+train_dl = DataLoader(train_ds, batch_size=bs)
+
+model, opt = get_model()
+
+for epoch in range(epochs):
+    for xb, yb in train_dl:
+        pred = model(xb)
+        loss = loss_func(pred, yb)
+
+        loss.backward()
+        opt.step()
+        opt.zero_grad()
+
+print(loss_func(model(xb), yb))
