@@ -66,16 +66,21 @@ print(xb.shape)
 preds = model(xb)  # predictions
 print(preds[0], preds.shape)
 
+
 def nll(input, target):
     return -input[range(target.shape[0]), target].mean()
+
 
 loss_func = nll
 yb = y_train[0:bs]
 print(loss_func(preds, yb))
 
+
 def accuracy(out, yb):
     preds = torch.argmax(out, dim=1)
     return (preds == yb).float().mean()
+
+
 print(accuracy(preds, yb))
 
 from IPython.core.debugger import set_trace
@@ -102,12 +107,111 @@ for epoch in range(epochs):
 
 print(loss_func(model(xb), yb), accuracy(model(xb), yb))
 
+# ################################################
+# Using torch.nn.functional
+# ################################################
+
 import torch.nn.functional as F
 
 loss_func = F.cross_entropy
+
 
 def model(xb):
     return xb @ weights + bias
 
 
 print(loss_func(model(xb), yb), accuracy(model(xb), yb))
+
+# ################################################
+# Refactor using nn.Module
+# ################################################
+
+from torch import nn
+
+
+class Mnist_Logistic(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.weights = nn.Parameter(torch.randn(784, 10) / math.sqrt(784))
+        self.bias = nn.Parameter(torch.zeros(10))
+
+    def forward(self, xb):
+        return xb @ self.weights + self.bias
+
+
+model = Mnist_Logistic()
+
+print(loss_func(model(xb), yb))
+
+
+def fit():
+    for epoch in range(epochs):
+        for i in range((n - 1) // bs + 1):
+            start_i = i * bs
+            end_i = start_i + bs
+            xb = x_train[start_i:end_i]
+            yb = y_train[start_i:end_i]
+            pred = model(xb)
+            loss = loss_func(pred, yb)
+
+            loss.backward()
+            with torch.no_grad():
+                for p in model.parameters():
+                    p -= p.grad * lr
+                model.zero_grad()
+
+
+fit()
+
+print(loss_func(model(xb), yb))
+
+
+# ######################################
+# Refactor using nn.Linear
+# ######################################
+
+class Mnist_Logistic(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.lin = nn.Linear(784, 10)
+
+    def forward(self, xb):
+        return self.lin(xb)
+
+
+model = Mnist_Logistic()
+print(loss_func(model(xb), yb))
+
+fit()
+
+print(loss_func(model(xb), yb))
+
+# ########################################
+# Refactor using optim
+# ########################################
+
+from torch import optim
+
+
+def get_model():
+    model = Mnist_Logistic()
+    return model, optim.SGD(model.parameters(), lr=lr)
+
+
+model, opt = get_model()
+print(loss_func(model(xb), yb))
+
+for epoch in range(epochs):
+    for i in range((n - 1) // bs + 1):
+        start_i = i * bs
+        end_i = start_i + bs
+        xb = x_train[start_i:end_i]
+        yb = y_train[start_i:end_i]
+        pred = model(xb)
+        loss = loss_func(pred, yb)
+
+        loss.backward()
+        opt.step()
+        opt.zero_grad()
+
+print(loss_func(model(xb), yb))
