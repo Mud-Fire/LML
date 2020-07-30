@@ -24,8 +24,8 @@ with gzip.open((PATH / FILENAME).as_posix(), "rb") as f:
     ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(f, encoding="latin-1")
 
 # 查看数据
-# pyplot.imshow(x_train[1].reshape((28, 28)), cmap="gray")
-# pylab.show()  # pycharm 要用下pylab才能显示图像窗口
+pyplot.imshow(x_train[1].reshape((28, 28)), cmap="gray")
+pylab.show()  # pycharm 要用下pylab才能显示图像窗口
 print(x_train.shape)
 
 import torch
@@ -62,6 +62,7 @@ def model(xb):
 bs = 64  # batch size
 
 xb = x_train[0:bs]  # a mini-batch from x
+print(xb.shape)
 preds = model(xb)  # predictions
 print(preds[0], preds.shape)
 
@@ -76,3 +77,27 @@ def accuracy(out, yb):
     preds = torch.argmax(out, dim=1)
     return (preds == yb).float().mean()
 print(accuracy(preds, yb))
+
+from IPython.core.debugger import set_trace
+
+lr = 0.5  # learning rate
+epochs = 2  # how many epochs to train for
+
+for epoch in range(epochs):
+    for i in range((n - 1) // bs + 1):
+        #         set_trace()
+        start_i = i * bs
+        end_i = start_i + bs
+        xb = x_train[start_i:end_i]
+        yb = y_train[start_i:end_i]
+        pred = model(xb)
+        loss = loss_func(pred, yb)
+
+        loss.backward()
+        with torch.no_grad():
+            weights -= weights.grad * lr
+            bias -= bias.grad * lr
+            weights.grad.zero_()
+            bias.grad.zero_()
+
+print(loss_func(model(xb), yb), accuracy(model(xb), yb))
