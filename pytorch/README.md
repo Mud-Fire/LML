@@ -13,3 +13,9 @@ Links to main cases in Pytorch website
 <br/>
 <br/>
 [LerningPytorchWithExamples](https://pytorch.org/tutorials/beginner/pytorch_with_examples.html)
+<br/>
+<br/>
+[what is torch.nn really](https://pytorch.org/tutorials/beginner/nn_tutorial.html)
+<br/>
+<br/>
+[Visualizing Models, Data, and Training with TensorBoard](https://pytorch.org/tutorials/intermediate/tensorboard_tutorial.html)
