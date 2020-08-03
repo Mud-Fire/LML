@@ -3,3 +3,4 @@
 .idea
 *.pkl
 /pytorch/TrainingAClassifier/data
+data
