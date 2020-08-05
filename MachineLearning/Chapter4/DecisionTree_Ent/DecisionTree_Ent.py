@@ -31,9 +31,12 @@ class DecisionTree:
         # 属性节点名称
         propNamesAll = xTrain.columns
         # 好瓜坏瓜计算数量
+        # print("=====")
+        # print(xTrain)
         yTrainCounts = yTrain.value_counts()
         # 当分支的瓜仅剩一类时，递归结束，返回叶子结点结果
-        # 这里有个bug！！！！当该属性只有一个样本时，会忽略节点
+
+        # print(yTrainCounts)
         if yTrainCounts.size == 1:
             return yTrainCounts.index[0]
         # 计算当前递归中，传入节点的瓜的pk
