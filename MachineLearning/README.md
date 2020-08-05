@@ -15,6 +15,7 @@
 
 #### [/Chapter4](./Chapter4)
 - [Decision Tree ID3](./Chapter4/DecisionTree_Ent)
+- [Decision Tree CART](./Chapter4/DecisionTree_CART)
 
 #### [/Datasets](./Datasets)
 
