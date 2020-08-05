@@ -17,6 +17,8 @@
 - [Decision Tree ID3](./Chapter4/DecisionTree_Ent)
 - [Decision Tree CART](./Chapter4/DecisionTree_CART)
 
+#### [/Chapter5](./Chapter5)
+
 #### [/Datasets](./Datasets)
 
 - waterMelon30a.csv
