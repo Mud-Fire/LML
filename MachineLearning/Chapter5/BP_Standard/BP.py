@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class Perceptron(object):
+class BP(object):
 
     def __init__(self, input_num, activator):
         self.activator = activator
