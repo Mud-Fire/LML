@@ -12,6 +12,7 @@ from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
-
+# 查看数据信息
 dataset = pd.read_csv("dataset.csv")
 dataset.info()
+dataset.describe(include="all").to_csv("./doc/data_describe.csv")

@@ -27,3 +27,11 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
      13  target    303 non-null    int64  
     dtypes: float64(1), int64(13)
     memory usage: 33.3 KB
+
+查看dataset的基本统计信息
+
+    dataset.describe(include="all").to_csv("./doc/data_describe.csv")
+    
+统计结果：
+
+![data_describe](./doc/data_describe.png)
