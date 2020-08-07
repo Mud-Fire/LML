@@ -43,12 +43,12 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 - 1、各特征值之间的相关系数矩阵
 
-    rcParams['figure.figsize'] = 20, 14
-    plt.matshow(dataset.corr())
-    plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
-    plt.xticks(np.arange(dataset.shape[1]), dataset.columns)
-    plt.colorbar()
-    pylab.show()
+        rcParams['figure.figsize'] = 20, 14
+        plt.matshow(dataset.corr())
+        plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
+        plt.xticks(np.arange(dataset.shape[1]), dataset.columns)
+        plt.colorbar()
+        pylab.show()
 
 相关系数矩阵：
 ![data_corr](./doc/data_corr.png)
