@@ -3,6 +3,7 @@
 EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://www.kaggle.com/ronitf/heart-disease-uci)
 
 **********************************
+## 数据基本统计信息
 
     dataset.info()
 
@@ -39,7 +40,7 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 ![data_describe](./doc/data_describe.png)
 
 **********************************
-可视化的展现数据的特征
+## 可视化的展现数据的特征
 
 - 1、各特征值之间的相关系数矩阵
 
