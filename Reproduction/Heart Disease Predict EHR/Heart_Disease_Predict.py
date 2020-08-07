@@ -27,3 +27,6 @@ plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
 plt.xticks(np.arange(dataset.shape[1]), dataset.columns)
 plt.colorbar()
 pylab.show()
+
+dataset.hist()
+plt.show()
