@@ -75,3 +75,6 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 &emsp;&emsp;类别分类频率图:
 
 ![data_target](./doc/data_target.png)
+
+**********************************
+## 数据处理
