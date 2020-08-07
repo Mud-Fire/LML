@@ -51,7 +51,7 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         plt.colorbar()
         pylab.show()
 
-&emsp;相关系数矩阵：
+&emsp;&emsp;相关系数矩阵：
 ![data_corr](./doc/data_corr.png)
 
 - 2、各特征值频率直方图
@@ -59,5 +59,5 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         dataset.hist()
         plt.show()
         
-&emsp;频率直方图：
+&emsp;&emsp;频率直方图：
 ![data_hist](./doc/data_hist.png)
