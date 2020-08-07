@@ -51,7 +51,7 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         plt.colorbar()
         pylab.show()
 
-\t\t相关系数矩阵：
+&emsp;相关系数矩阵：
 ![data_corr](./doc/data_corr.png)
 
     
