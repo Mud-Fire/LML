@@ -2,6 +2,8 @@
 
 EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://www.kaggle.com/ronitf/heart-disease-uci)
 
+**********************************
+
     dataset.info()
 
 查看dataset内容信息
@@ -35,3 +37,20 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 统计结果：
 
 ![data_describe](./doc/data_describe.png)
+
+**********************************
+可视化的展现数据的特征
+
+- 1、各特征值之间的相关系数矩阵
+
+    rcParams['figure.figsize'] = 20, 14
+    plt.matshow(dataset.corr())
+    plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
+    plt.xticks(np.arange(dataset.shape[1]), dataset.columns)
+    plt.colorbar()
+    pylab.show()
+
+相关系数矩阵：
+![data_corr](./doc/data_corr.png)
+
+    
