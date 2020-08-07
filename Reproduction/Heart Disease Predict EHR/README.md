@@ -61,3 +61,16 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         
 &emsp;&emsp;频率直方图：
 ![data_hist](./doc/data_hist.png)
+
+- 3、目标类别分类，以及各类的频率分布
+
+        rcParams['figure.figsize'] = 7,6
+        plt.bar(dataset['target'].unique(), dataset['target'].value_counts(), color = ['red', 'green'])
+        plt.xticks([0, 1])
+        plt.xlabel('Target Classes')
+        plt.ylabel('Count')
+        plt.title('Count of each Target Class')
+        plt.show()
+        
+&emsp;&emsp;类别分类频率图：
+![data_target](./doc/data_target.png)

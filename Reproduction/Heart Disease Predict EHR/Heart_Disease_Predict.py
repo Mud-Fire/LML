@@ -30,5 +30,12 @@ pylab.show()
 # 频率直方图
 dataset.hist()
 plt.show()
-
+# 查看分类类别以及各类的频率分布
+rcParams['figure.figsize'] = 7,6
+plt.bar(dataset['target'].unique(), dataset['target'].value_counts(), color = ['red', 'green'])
+plt.xticks([0, 1])
+plt.xlabel('Target Classes')
+plt.ylabel('Count')
+plt.title('Count of each Target Class')
+plt.show()
 
