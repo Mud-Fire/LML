@@ -20,13 +20,15 @@ dataset.info()
 dataset.describe(include="all").to_csv("./doc/data_describe.csv")
 
 # 对数据进行比较和可视化展示
-
+# 相关系数矩阵
 rcParams['figure.figsize'] = 20, 14
 plt.matshow(dataset.corr())
 plt.yticks(np.arange(dataset.shape[1]), dataset.columns)
 plt.xticks(np.arange(dataset.shape[1]), dataset.columns)
 plt.colorbar()
 pylab.show()
-
+# 频率直方图
 dataset.hist()
 plt.show()
+
+
