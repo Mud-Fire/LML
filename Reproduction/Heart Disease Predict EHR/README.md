@@ -220,3 +220,17 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 &emsp;&emsp;决策树的得分情况：
 ![Decision_Tree_Scores](./doc/Decision_Tree_Scores.png)
 &emsp;&emsp;从结果上看，使用max_features选[2,4,18]时表现最好，得分最高
+
+### Random Forest Classifier
+&emsp;&emsp;使用sklearn包的RandomForestClassifier方法
+
+        rf_scores = []
+        estimators = [10, 100, 200, 500, 1000]
+        for i in estimators:
+            rf_classifier = RandomForestClassifier(n_estimators=i, random_state=0)
+            rf_classifier.fit(X_train, y_train)
+            rf_scores.append(rf_classifier.score(X_test, y_test))
+            
+&emsp;&emsp;得分情况：
+![Random_Forest_Scores](./doc/Random_Forest_Scores.png)
+&emsp;&emsp;从结果上看，评价数为[100,500]时最好
