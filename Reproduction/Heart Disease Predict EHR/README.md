@@ -82,7 +82,8 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         
         dataset = pd.get_dummies(dataset, columns=['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
 
-&emsp;&emsp;对各属性值进行一次编码：
+&emsp;&emsp;对各属性值进行一次编码，少量分类信息分解成0-1分类问题
+&emsp;&emsp;结果：
         
         <class 'pandas.core.frame.DataFrame'>
         RangeIndex: 303 entries, 0 to 302
@@ -179,4 +180,15 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         memory usage: 14.5 KB
 
 
+### K-Neighbors 分类
+&emsp;&emsp;使用sklearn包的KNeighborsClassifier方法，利用循环K值分成1-21类看各类的得分
 
+        knn_scores = []
+        for k in range(1, 21):
+            knn_classifier = KNeighborsClassifier(n_neighbors=k)
+            knn_classifier.fit(X_train, y_train)
+            knn_scores.append(knn_classifier.score(X_test, y_test))
+            
+&emsp;&emsp;各K值的得分：
+
+![K_Neighbors_Scores](./doc/K_Neighbors_Scores.png)
