@@ -207,3 +207,16 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 &emsp;&emsp;各kernel的得分情况：
 ![Support_Vector_Scores](./doc/Support_Vector_Scores.png)
 &emsp;&emsp;从结果上看，使用linear kernel表现最好，得分最高
+
+### Decision Tree Classifier
+&emsp;&emsp;使用sklearn包的DecisionTreeClassifier方法
+
+        dt_scores = []
+        for i in range(1, len(X.columns) + 1):
+            dt_classifier = DecisionTreeClassifier(max_features=i, random_state=0)
+            dt_classifier.fit(X_train, y_train)
+            dt_scores.append(dt_classifier.score(X_test, y_test))
+
+&emsp;&emsp;决策树的得分情况：
+![Decision_Tree_Scores](./doc/Decision_Tree_Scores.png)
+&emsp;&emsp;从结果上看，使用max_features选[2,4,18]时表现最好，得分最高

@@ -82,15 +82,32 @@ plt.show()
 svc_scores = []
 kernels = ['linear', 'poly', 'rbf', 'sigmoid']
 for i in range(len(kernels)):
-    svc_classifier = SVC(kernel = kernels[i])
+    svc_classifier = SVC(kernel=kernels[i])
     svc_classifier.fit(X_train, y_train)
     svc_scores.append(svc_classifier.score(X_test, y_test))
 
 colors = rainbow(np.linspace(0, 1, len(kernels)))
-plt.bar(kernels, svc_scores, color = colors)
+plt.bar(kernels, svc_scores, color=colors)
 for i in range(len(kernels)):
     plt.text(i, svc_scores[i], svc_scores[i])
 plt.xlabel('Kernels')
 plt.ylabel('Scores')
 plt.title('Support Vector Classifier scores for different kernels')
+plt.show()
+
+# Decision Tree Classifier
+
+dt_scores = []
+for i in range(1, len(X.columns) + 1):
+    dt_classifier = DecisionTreeClassifier(max_features=i, random_state=0)
+    dt_classifier.fit(X_train, y_train)
+    dt_scores.append(dt_classifier.score(X_test, y_test))
+
+plt.plot([i for i in range(1, len(X.columns) + 1)], dt_scores, color='red')
+for i in range(1, len(X.columns) + 1):
+    plt.text(i, dt_scores[i - 1], (i, dt_scores[i - 1]))
+plt.xticks([i for i in range(1, len(X.columns) + 1)])
+plt.xlabel('Max features')
+plt.ylabel('Scores')
+plt.title('Decision Tree Classifier scores for different number of maximum features')
 plt.show()
