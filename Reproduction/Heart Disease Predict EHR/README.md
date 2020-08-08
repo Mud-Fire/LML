@@ -180,7 +180,7 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
         memory usage: 14.5 KB
 
 
-### K-Neighbors 分类
+### K-Neighbors Classifier
 &emsp;&emsp;使用sklearn包的KNeighborsClassifier方法，利用循环K值分成1-21类看各类的得分
 
         knn_scores = []
@@ -190,5 +190,22 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
             knn_scores.append(knn_classifier.score(X_test, y_test))
             
 &emsp;&emsp;各K值的得分：
-
 ![K_Neighbors_Scores](./doc/K_Neighbors_Scores.png)
+
+&emsp;&emsp;k值为8时得到最高分87%
+
+### Support Vector Classifier
+
+&emsp;&emsp;使用sklearn包的SVC方法,利用不同的kernel进行分析
+
+        svc_scores = []
+        kernels = ['linear', 'poly', 'rbf', 'sigmoid']
+        for i in range(len(kernels)):
+            svc_classifier = SVC(kernel = kernels[i])
+            svc_classifier.fit(X_train, y_train)
+            svc_scores.append(svc_classifier.score(X_test, y_test))
+
+&emsp;&emsp;各kernel的得分情况：
+![Support_Vector_Scores](./doc/Support_Vector_Scores.png)
+
+&emsp;&emsp;从结果上看，使用linear kernel表现最好，得分最高
