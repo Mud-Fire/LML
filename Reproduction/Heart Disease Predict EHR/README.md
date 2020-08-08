@@ -206,7 +206,7 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 &emsp;&emsp;各kernel的得分情况：
 ![Support_Vector_Scores](./doc/Support_Vector_Scores.png)
-&emsp;&emsp;从结果上看，使用linear kernel表现最好，得分最高
+&emsp;&emsp;从结果上看，使用linear kernel表现最好，得分最高,得分83%
 
 ### Decision Tree Classifier
 &emsp;&emsp;使用sklearn包的DecisionTreeClassifier方法
@@ -219,7 +219,7 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 &emsp;&emsp;决策树的得分情况：
 ![Decision_Tree_Scores](./doc/Decision_Tree_Scores.png)
-&emsp;&emsp;从结果上看，使用max_features选[2,4,18]时表现最好，得分最高
+&emsp;&emsp;从结果上看，使用max_features选[2,4,18]时表现最好，得分最高，得分79%
 
 ### Random Forest Classifier
 &emsp;&emsp;使用sklearn包的RandomForestClassifier方法
@@ -233,4 +233,10 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
             
 &emsp;&emsp;得分情况：
 ![Random_Forest_Scores](./doc/Random_Forest_Scores.png)
-&emsp;&emsp;从结果上看，评价数为[100,500]时最好
+&emsp;&emsp;从结果上看，评价数为[100,500]时最好，得分84%
+
+## 结论
+
+对 kaggle 数据库nci心脏疾病EHR数据进行机器学习分析，分别使用__K Neighbors Classifier__,__Support Vector Classifier__,
+__Decision Tree Classifier__,__Random Forest Classifier__方法进行分析，综合几种机器学习在测试集的得分情况可以看出，在
+K-Neighbors方法中，K值取8时，测试集分值最高，预测准确率87%
