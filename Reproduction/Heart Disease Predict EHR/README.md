@@ -191,7 +191,6 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
             
 &emsp;&emsp;各K值的得分：
 ![K_Neighbors_Scores](./doc/K_Neighbors_Scores.png)
-
 &emsp;&emsp;k值为8时得到最高分87%
 
 ### Support Vector Classifier
@@ -207,5 +206,4 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 &emsp;&emsp;各kernel的得分情况：
 ![Support_Vector_Scores](./doc/Support_Vector_Scores.png)
-
 &emsp;&emsp;从结果上看，使用linear kernel表现最好，得分最高
