@@ -237,6 +237,6 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 ## 结论
 
-对 kaggle 数据库nci心脏疾病EHR数据进行机器学习分析，分别使用__K Neighbors Classifier__,__Support Vector Classifier__,
-__Decision Tree Classifier__,__Random Forest Classifier__方法进行分析，综合几种机器学习在测试集的得分情况可以看出，在
+对 kaggle 数据库nci心脏疾病EHR数据进行机器学习分析，分别使用 __K Neighbors Classifier__ , __Support Vector Classifier__ ,
+__Decision Tree Classifier__ , __Random Forest Classifier__ 方法进行分析，综合几种机器学习在测试集的得分情况可以看出，在
 K-Neighbors方法中，K值取8时，测试集分值最高，预测准确率87%
