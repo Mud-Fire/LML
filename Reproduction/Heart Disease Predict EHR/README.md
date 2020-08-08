@@ -78,3 +78,45 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 **********************************
 ## 数据处理
+使用
+        dataset = pd.get_dummies(dataset, columns=['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
+对各属性值进行一次编码
+        
+        <class 'pandas.core.frame.DataFrame'>
+        RangeIndex: 303 entries, 0 to 302
+        Data columns (total 31 columns):
+         #   Column     Non-Null Count  Dtype  
+        ---  ------     --------------  -----  
+         0   age        303 non-null    int64  
+         1   trestbps   303 non-null    int64  
+         2   chol       303 non-null    int64  
+         3   thalach    303 non-null    int64  
+         4   oldpeak    303 non-null    float64
+         5   target     303 non-null    int64  
+         6   sex_0      303 non-null    uint8  
+         7   sex_1      303 non-null    uint8  
+         8   cp_0       303 non-null    uint8  
+         9   cp_1       303 non-null    uint8  
+         10  cp_2       303 non-null    uint8  
+         11  cp_3       303 non-null    uint8  
+         12  fbs_0      303 non-null    uint8  
+         13  fbs_1      303 non-null    uint8  
+         14  restecg_0  303 non-null    uint8  
+         15  restecg_1  303 non-null    uint8  
+         16  restecg_2  303 non-null    uint8  
+         17  exang_0    303 non-null    uint8  
+         18  exang_1    303 non-null    uint8  
+         19  slope_0    303 non-null    uint8  
+         20  slope_1    303 non-null    uint8  
+         21  slope_2    303 non-null    uint8  
+         22  ca_0       303 non-null    uint8  
+         23  ca_1       303 non-null    uint8  
+         24  ca_2       303 non-null    uint8  
+         25  ca_3       303 non-null    uint8  
+         26  ca_4       303 non-null    uint8  
+         27  thal_0     303 non-null    uint8  
+         28  thal_1     303 non-null    uint8  
+         29  thal_2     303 non-null    uint8  
+         30  thal_3     303 non-null    uint8  
+        dtypes: float64(1), int64(5), uint8(25)
+        memory usage: 21.7 KB
