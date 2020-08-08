@@ -79,8 +79,10 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 **********************************
 ## 数据处理
 使用
+        
         dataset = pd.get_dummies(dataset, columns=['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
-对各属性值进行一次编码
+
+对各属性值进行一次编码：
         
         <class 'pandas.core.frame.DataFrame'>
         RangeIndex: 303 entries, 0 to 302
