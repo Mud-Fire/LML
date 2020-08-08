@@ -78,11 +78,11 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 **********************************
 ## 数据处理
-使用
+&emsp;&emsp;使用
         
         dataset = pd.get_dummies(dataset, columns=['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
 
-对各属性值进行一次编码：
+&emsp;&emsp;对各属性值进行一次编码：
         
         <class 'pandas.core.frame.DataFrame'>
         RangeIndex: 303 entries, 0 to 302
@@ -122,3 +122,61 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
          30  thal_3     303 non-null    uint8  
         dtypes: float64(1), int64(5), uint8(25)
         memory usage: 21.7 KB
+        
+&emsp;&emsp;使用StandardScale()对数据非0-1属性列进行归一化处理
+        
+        standardScaler = StandardScaler()
+        columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
+        dataset[columns_to_scale] = standardScaler.fit_transform(dataset[columns_to_scale])
+
+**********************************
+## 机器学习过程
+### 数据集划分
+&emsp;&emsp;对数据划分成训练集和测试集，使用sklearn包的train_test_split()方法，测试集占总数1/3
+
+        y = dataset['target']
+        X = dataset.drop(['target'], axis=1)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=0)
+
+&emsp;&emsp;查看一下X_train的信息：
+
+        <class 'pandas.core.frame.DataFrame'>
+        Int64Index: 203 entries, 252 to 172
+        Data columns (total 30 columns):
+         #   Column     Non-Null Count  Dtype  
+        ---  ------     --------------  -----  
+         0   age        203 non-null    float64
+         1   trestbps   203 non-null    float64
+         2   chol       203 non-null    float64
+         3   thalach    203 non-null    float64
+         4   oldpeak    203 non-null    float64
+         5   sex_0      203 non-null    uint8  
+         6   sex_1      203 non-null    uint8  
+         7   cp_0       203 non-null    uint8  
+         8   cp_1       203 non-null    uint8  
+         9   cp_2       203 non-null    uint8  
+         10  cp_3       203 non-null    uint8  
+         11  fbs_0      203 non-null    uint8  
+         12  fbs_1      203 non-null    uint8  
+         13  restecg_0  203 non-null    uint8  
+         14  restecg_1  203 non-null    uint8  
+         15  restecg_2  203 non-null    uint8  
+         16  exang_0    203 non-null    uint8  
+         17  exang_1    203 non-null    uint8  
+         18  slope_0    203 non-null    uint8  
+         19  slope_1    203 non-null    uint8  
+         20  slope_2    203 non-null    uint8  
+         21  ca_0       203 non-null    uint8  
+         22  ca_1       203 non-null    uint8  
+         23  ca_2       203 non-null    uint8  
+         24  ca_3       203 non-null    uint8  
+         25  ca_4       203 non-null    uint8  
+         26  thal_0     203 non-null    uint8  
+         27  thal_1     203 non-null    uint8  
+         28  thal_2     203 non-null    uint8  
+         29  thal_3     203 non-null    uint8  
+        dtypes: float64(5), uint8(25)
+        memory usage: 14.5 KB
+
+
+

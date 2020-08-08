@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 from matplotlib import rcParams
 from matplotlib.cm import rainbow
 import warnings
-warnings.filterwarnings('ignore')
 
+warnings.filterwarnings('ignore')
 
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -13,7 +13,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-
 
 # 查看数据基本信息
 dataset = pd.read_csv("dataset.csv")
@@ -45,3 +44,14 @@ plt.title('Count of each Target Class')
 dataset = pd.get_dummies(dataset, columns=['sex', 'cp', 'fbs', 'restecg', 'exang', 'slope', 'ca', 'thal'])
 dataset.info()
 dataset.describe(include="all").to_csv("./doc/data_dummies.csv")
+# 使用scale对数据进行归一化
+standardScaler = StandardScaler()
+columns_to_scale = ['age', 'trestbps', 'chol', 'thalach', 'oldpeak']
+dataset[columns_to_scale] = standardScaler.fit_transform(dataset[columns_to_scale])
+
+# 机器学习过程
+# 首先把数据集分成训练集和测试集
+y = dataset['target']
+X = dataset.drop(['target'], axis=1)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=0)
+X_train.info()
