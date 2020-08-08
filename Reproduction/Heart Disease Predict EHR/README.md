@@ -4,10 +4,10 @@ EHR数据来源Kaggle [https://www.kaggle.com/ronitf/heart-disease-uci](https://
 
 使用以下四种学习方法进行分析，比较选取其中表现比较好的方法
 
-- ##K Neighbors Classifier##
-- ##Support Vector Classifier##
-- ##Decision Tree Classifier##
-- ##Random Forest Classifier##
+- **K Neighbors Classifier**
+- **Support Vector Classifier**
+- **Decision Tree Classifier**
+- **Random Forest Classifier**
 
 
 **********************************
