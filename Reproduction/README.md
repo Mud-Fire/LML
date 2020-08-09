@@ -4,7 +4,7 @@
 - 基于视频的心跳心功能评估
 - 基于视频减少静止图片评估时丢失的信息，减少人工筛选的误差
 
-[Heart Disease Predict EHR](.\Heart Disease Predict EHR)
+[Heart Disease Predict EHR](./Heart+Disease+Predict+EHR)
 - EHR数据来源Kaggle
 - 机器学习方法sklearn
 
