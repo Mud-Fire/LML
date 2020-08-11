@@ -39,7 +39,7 @@ class PennFudanDataset(object):
         masks = torch.as_tensor(masks, dtype=torch.uint8)
         image_id = torch.tensor([idx])
         area = (boxes[:, 3] - boxes[:, 1]) * (boxes[:, 2] - boxes[:, 0])
-        iscrowd = torch.zeros((num_objs),dtype=torch.int64)
+        iscrowd = torch.zeros((num_objs), dtype=torch.int64)
 
         target = {}
         target["boxes"] = boxes
@@ -56,3 +56,11 @@ class PennFudanDataset(object):
 
     def __len__(self):
         return len(self.imgs)
+
+
+import torchvision
+from torchvision.models.detection.faster_rcnn import FastRCNNPredictor
+model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+num_classes = 2
+in_features = model.roi_heads.box_predictor.cls_score.in_features
+model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
