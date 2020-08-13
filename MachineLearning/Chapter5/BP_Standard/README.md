@@ -4,9 +4,9 @@
 - 标准BP神经网络算法
 
 ### 数据集
-- ..\..\Datasets\waterMelon3.0.csv
+- ..\\..\Datasets\waterMelon3.0.csv
 
-[waterMelon3.0](..\..\Datasets\)
+[waterMelon3.0](../../Datasets/)
 
         色泽	根蒂	敲声	纹理	脐部	触感	密度	含糖率	好瓜
         青绿	蜷缩	浊响	清晰	凹陷	硬滑	0.697	0.46	是
