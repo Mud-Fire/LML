@@ -34,12 +34,16 @@ def prepareData(Path):
 def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-x))
 
-def predict(iX , v, w,theta, gamma):
+
+def predict(iX, v, w, theta, gamma):
     alpha = np.dot(iX, v)  # p101 line 2 from bottom, shape=m*q
     b = sigmoid(alpha - gamma)  # b=f(alpha-gamma), shape=m*q
     beta = np.dot(b, w)  # shape=(m*q)*(q*l)=m*l
     predictY = sigmoid(beta - theta)  # shape=m*l ,p102--5.3
-    return predictY
+    predictY[predictY >= 0.5] = 1
+    predictY[predictY < 0.5] = 0
+    predictY = predictY.astype("int")
+    return predictY.T
 
 
 # 程序入口
@@ -66,8 +70,8 @@ if __name__ == '__main__':
     # print(X_train)
     l = 1
     q = 5
-    lr = 0.01
-    maxTrain = 50
+    lr = 0.1
+    maxTrain = 5000
 
     # 声明 θ、γ、v、w、
     theta = np.random.rand(l)
@@ -80,14 +84,12 @@ if __name__ == '__main__':
         # 标准BP按照每个样本运算一次，即更新各参数
         for i in range(m):
             alpha = X_train[i].dot(v)
-            b = sigmoid(alpha + gamma)
+            b = sigmoid(alpha - gamma)
             belta = np.dot(b, w)
-            y_ = np.squeeze(sigmoid(belta + theta))
+            y_ = np.squeeze(sigmoid(belta - theta))
 
             # 均方差
             E = 0.5 * np.dot((y_ - y_train[i]), (y_ - y_train[i]))
-            # print(E)
-
             g = y_ * (1 - y_) * (y_train[i] - y_)
             # print("++++++++++")
             e1 = np.multiply(b, 1 - b)
@@ -96,7 +98,11 @@ if __name__ == '__main__':
             # print("=======")
             w = w + lr * np.dot(b.reshape((q, 1)), g.reshape((1, l)))
             theta = theta - lr * g
-            v = v + lr * np.dot(X_train[i].reshape(d, 1), e.reshape((1, q)))
+            v = v + lr * np.dot(X_train[i].reshape((d, 1)), e.reshape((1, q)))
             gamma = gamma - lr * e
 
-    print(predict(X,v,w,theta,gamma))
+    print("训练后：模型训练集预测结果\t:", np.squeeze(predict(X_train, v, w, theta, gamma)))
+    print("训练集真实结果\t\t\t:", y_train)
+
+    print("训练后，模型测试集预测结果\t:", np.squeeze(predict(X_test, v, w, theta, gamma)))
+    print("测试集真实结果\t\t\t:", y_test)
