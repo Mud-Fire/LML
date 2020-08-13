@@ -4,9 +4,8 @@
 - 标准BP神经网络算法
 
 ### 数据集
-..\..\Datasets\waterMelon3.0.csv
-
-[waterMelon3.0](..\..\Datasets\waterMelon3.0.csv)
+- ..\..\Datasets\waterMelon3.0.csv
+[waterMelon3.0](..\..\Datasets\)
 
         色泽	根蒂	敲声	纹理	脐部	触感	密度	含糖率	好瓜
         青绿	蜷缩	浊响	清晰	凹陷	硬滑	0.697	0.46	是
@@ -29,11 +28,11 @@
 
 ### 主要逻辑代码：
 
-使用sklearn包中的train_test_spit()方法划分了训练集和测试集，一行代码就可以
+- 使用sklearn包中的train_test_spit()方法划分了训练集和测试集，一行代码就可以
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=0)
 
-按照书上的符号进行参数声明
+- 按照书上的符号进行参数声明
 
         # 声明 θ、γ、v、w、
         theta = np.random.rand(l)
@@ -41,20 +40,20 @@
         v = np.random.rand(d, q)
         w = np.random.rand(q, l)
 
-因为是标准bp，所以每个样本进行运算时，均要更新一次参数，这里设置了两层循环，一层为训练次数，内层为单此训练的样本数量。
+- 因为是标准bp，所以每个样本进行运算时，均要更新一次参数，这里设置了两层循环，一层为训练次数，内层为单此训练的样本数量。
 
         for _ in range(maxTrain):
             # 标准BP按照每个样本运算一次，即更新各参数
             for i in range(m):
             
-前向计算过程：
+- 前向计算过程：
 
         alpha = X_train[i].dot(v)
         b = sigmoid(alpha - gamma)
         belta = np.dot(b, w)
         y_ = np.squeeze(sigmoid(belta - theta))
         
-课本(5.4) -(5.15)公式提高的参数更新过程：
+- 课本(5.4) -(5.15)公式提高的参数更新过程：
 
         E = 0.5 * np.dot((y_ - y_train[i]), (y_ - y_train[i])) #公式(5.5)
         g = y_ * (1 - y_) * (y_train[i] - y_) #公式(5.10)
@@ -68,7 +67,7 @@
         gamma = gamma - lr * e # 公式(5.14)
         v = v + lr * np.dot(X_train[i].reshape((d, 1)), e.reshape((1, q))) # 公式(5.13)
 
-使用训练后的参数计算样本，返回模型预测值：
+- 使用训练后的参数计算样本，返回模型预测值：
 
         predict(X_train, v, w, theta, gamma)
         predict(X_test, v, w, theta, gamma)
