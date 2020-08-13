@@ -34,6 +34,13 @@ def prepareData(Path):
 def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-x))
 
+def predict(iX , v, w,theta, gamma):
+    alpha = np.dot(iX, v)  # p101 line 2 from bottom, shape=m*q
+    b = sigmoid(alpha - gamma)  # b=f(alpha-gamma), shape=m*q
+    beta = np.dot(b, w)  # shape=(m*q)*(q*l)=m*l
+    predictY = sigmoid(beta - theta)  # shape=m*l ,p102--5.3
+    return predictY
+
 
 # 程序入口
 if __name__ == '__main__':
@@ -50,36 +57,46 @@ if __name__ == '__main__':
     y_train = np.array(y_train)
     y_test = np.array(y_test)
 
-    m, n = np.shape(X_train)
-    d = n
+    # 这里按照课本上的参数进行声明
+    # m 为样本数量
+    # d 为样本特征属性个数
+    # l 为输出层节点个数
+    # q 为隐藏层节点个数
+    m, d = np.shape(X_train)
+    # print(X_train)
     l = 1
-    q = d + 1
+    q = 5
     lr = 0.01
-    maxTrain = 500
+    maxTrain = 50
 
-    theta = np.random.rand()
+    # 声明 θ、γ、v、w、
+    theta = np.random.rand(l)
     gamma = np.random.randn(q)
-    v = np.random.rand(n, q)
-    w = np.random.rand(q, m)
+    v = np.random.rand(d, q)
+    w = np.random.rand(q, l)
 
+    # 训练次数
     for _ in range(maxTrain):
-        alpha = X_train.dot(v)
-        b = sigmoid(alpha + gamma)
-        belta = np.dot(b, w)
-        y_ = np.squeeze(sigmoid(belta + theta))
-        E = np.dot((y_ - y_train), (y_ - y_train))
+        # 标准BP按照每个样本运算一次，即更新各参数
+        for i in range(m):
+            alpha = X_train[i].dot(v)
+            b = sigmoid(alpha + gamma)
+            belta = np.dot(b, w)
+            y_ = np.squeeze(sigmoid(belta + theta))
 
-        g1 = np.multiply(y_,(1-y_))
-        g = np.multiply(g1,(y_train-y_))
-        print(np.shape(g))
-        e1 = np.multiply(b, (1 - b))
-        print(np.shape(e1))
-        e2 = np.dot(w, g)
-        print(np.shape(e2))
-        e = np.multiply(e1,e2.T)
+            # 均方差
+            E = 0.5 * np.dot((y_ - y_train[i]), (y_ - y_train[i]))
+            # print(E)
 
-        w += lr * np.multiply(g, b)
-        print(w)
+            g = y_ * (1 - y_) * (y_train[i] - y_)
+            # print("++++++++++")
+            e1 = np.multiply(b, 1 - b)
+            e2 = np.dot(w, g)
+            e = np.multiply(e1, np.squeeze(e2))
+            # print("=======")
+            w = w + lr * np.dot(b.reshape((q, 1)), g.reshape((1, l)))
+            theta = theta - lr * g
+            v = v + lr * np.dot(X_train[i].reshape(d, 1), e.reshape((1, q)))
+            gamma = gamma - lr * e
 
-
-        stop()
+    print(predict(X,v,w,theta,gamma))
