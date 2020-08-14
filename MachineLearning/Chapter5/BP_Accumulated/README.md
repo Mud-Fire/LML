@@ -1,7 +1,7 @@
 # Chapter 5 
 
 ### 西瓜书第五章课后习题
-- 标准BP神经网络算法
+- 累积BP神经网络算法
 
 ### 数据集
 - ..\\..\Datasets\waterMelon3.0.csv
@@ -40,35 +40,3 @@
         gamma = np.random.randn(q)
         v = np.random.rand(d, q)
         w = np.random.rand(q, l)
-
-- 因为是标准bp，所以每个样本进行运算时，均要更新一次参数，这里设置了两层循环，一层为训练次数，内层为单此训练的样本数量。
-
-        for _ in range(maxTrain):
-            # 标准BP按照每个样本运算一次，即更新各参数
-            for i in range(m):
-            
-- 前向计算过程：
-
-        alpha = X_train[i].dot(v)
-        b = sigmoid(alpha - gamma)
-        belta = np.dot(b, w)
-        y_ = np.squeeze(sigmoid(belta - theta))
-        
-- 课本(5.4) -(5.15)公式提高的参数更新过程：
-
-        E = 0.5 * np.dot((y_ - y_train[i]), (y_ - y_train[i])) #公式(5.5)
-        g = y_ * (1 - y_) * (y_train[i] - y_) #公式(5.10)
-        # print("++++++++++")
-        e1 = np.multiply(b, 1 - b)
-        e2 = np.dot(w, g)
-        e = np.multiply(e1, np.squeeze(e2)) # 公式(5.15)
-        # print("=======")
-        w = w + lr * np.dot(b.reshape((q, 1)), g.reshape((1, l))) # 公式(5.11)
-        theta = theta - lr * g # 公式(5.12)
-        gamma = gamma - lr * e # 公式(5.14)
-        v = v + lr * np.dot(X_train[i].reshape((d, 1)), e.reshape((1, q))) # 公式(5.13)
-
-- 使用训练后的参数计算样本，返回模型预测值：
-
-        predict(X_train, v, w, theta, gamma)
-        predict(X_test, v, w, theta, gamma)
