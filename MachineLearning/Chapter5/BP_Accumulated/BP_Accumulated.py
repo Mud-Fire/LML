@@ -82,24 +82,24 @@ if __name__ == '__main__':
     # 训练次数
     for _ in range(maxTrain):
         # 标准BP按照每个样本运算一次，即更新各参数
-        for i in range(m):
-            alpha = X_train[i].dot(v)
-            b = sigmoid(alpha - gamma)
-            belta = np.dot(b, w)
-            y_ = np.squeeze(sigmoid(belta - theta))
 
-            # 均方差
-            E = 0.5 * np.dot((y_ - y_train[i]), (y_ - y_train[i]))
-            g = y_ * (1 - y_) * (y_train[i] - y_)
-            # print("++++++++++")
-            e1 = np.multiply(b, 1 - b)
-            e2 = np.dot(w, g)
-            e = np.multiply(e1, np.squeeze(e2))
-            # print("=======")
-            w = w + lr * np.dot(b.reshape((q, 1)), g.reshape((1, l)))
-            theta = theta - lr * g
-            v = v + lr * np.dot(X_train[i].reshape((d, 1)), e.reshape((1, q)))
-            gamma = gamma - lr * e
+        alpha = X_train.dot(v)
+        b = sigmoid(alpha - gamma)
+        belta = np.dot(b, w)
+        y_ = np.squeeze(sigmoid(belta - theta))
+
+        # 均方差
+        E = 0.5 * np.dot((y_ - y_train), (y_ - y_train))
+        g = y_ * (1 - y_) * (y_train - y_)
+        # print("++++++++++")
+        e1 = np.multiply(b, 1 - b)
+        e2 = np.dot(w, g)
+        e = np.multiply(e1, np.squeeze(e2))
+        # print("=======")
+        w = w + lr * np.dot(b.reshape((q, 1)), g.reshape((1, l)))
+        theta = theta - lr * g
+        v = v + lr * np.dot(X_train[i].reshape((d, 1)), e.reshape((1, q)))
+        gamma = gamma - lr * e
 
     print("训练后：模型训练集预测结果\t:", np.squeeze(predict(X_train, v, w, theta, gamma)))
     print("训练集真实结果\t\t\t:", y_train)
