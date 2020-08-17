@@ -91,11 +91,9 @@ if __name__ == '__main__':
         # 均方差
         E = 0.5 * np.dot((y_ - y_train), (y_ - y_train))
         g = y_ * (1 - y_) * (y_train - y_)
-        # print("++++++++++")
         e1 = np.multiply(b, 1 - b)
         e2 = np.dot(w, g)
         e = np.multiply(e1, np.squeeze(e2))
-        # print("=======")
         w = w + lr * np.dot(b.reshape((q, 1)), g.reshape((1, l)))
         theta = theta - lr * g
         v = v + lr * np.dot(X_train[i].reshape((d, 1)), e.reshape((1, q)))
