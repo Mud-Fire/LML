@@ -115,7 +115,6 @@ if __name__ == '__main__':
         v = v + lr * np.dot(X_train.T, e)
         gamma = gamma - lr * e
 
-
     print("训练后：模型训练集预测结果\t:", np.squeeze(predict(X_train, v, w, theta, gamma)))
     print("训练集真实结果\t\t\t:", y_train)
 
