@@ -4,6 +4,7 @@
 - p.141 第六章 使用LIBSVM算法在西瓜集3.0α上分别使用线性核和高斯核训练一个SVM
 
 LIBSVM ：
+
         options:
         -s svm_type : set type of SVM (default 0)
             0 -- C-SVC
