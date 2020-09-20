@@ -96,6 +96,8 @@ def train_fold(train_ind, test_ind, val_ind, graph_feat, features, y, y_data, pa
 
 
 def main():
+    
+    # 设置参数
     parser = argparse.ArgumentParser(description='Graph CNNs for population graphs: '
                                                  'classification of the ABIDE dataset')
     parser.add_argument('--dropout', default=0.3, type=float,

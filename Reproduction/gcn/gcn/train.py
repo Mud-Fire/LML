@@ -26,10 +26,12 @@ flags.DEFINE_integer('early_stopping', 10, 'Tolerance for early stopping (# of e
 flags.DEFINE_integer('max_degree', 3, 'Maximum Chebyshev polynomial degree.')
 
 # Load data
+print(FLAGS.dataset)
 adj, features, y_train, y_val, y_test, train_mask, val_mask, test_mask = load_data(FLAGS.dataset)
 
 # Some preprocessing
 features = preprocess_features(features)
+print(features)
 if FLAGS.model == 'gcn':
     support = [preprocess_adj(adj)]
     num_supports = 1
@@ -45,6 +47,9 @@ elif FLAGS.model == 'dense':
 else:
     raise ValueError('Invalid argument for model: ' + str(FLAGS.model))
 
+
+print(adj)
+print(features[0])
 # Define placeholders
 placeholders = {
     'support': [tf.sparse_placeholder(tf.float32) for _ in range(num_supports)],
@@ -57,7 +62,10 @@ placeholders = {
 }
 
 # Create model
-print(placeholders)
+# print(placeholders['support'])
+print(len(features[2][1]))
+print(placeholders['labels'].get_shape().as_list()[1])
+stop()
 model = model_func(placeholders, input_dim=features[2][1], logging=True)
 
 # Initialize session
