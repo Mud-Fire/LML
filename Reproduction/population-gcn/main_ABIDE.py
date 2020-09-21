@@ -153,6 +153,7 @@ def main():
 
     # Get class labels
     subject_IDs = Reader.get_ids()
+    print(subject_IDs)
     labels = Reader.get_subject_score(subject_IDs, score='DX_GROUP')
 
     # Get acquisition site
