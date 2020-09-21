@@ -12,14 +12,14 @@ from build_graph import build_karate_club_graph
 import warnings
 warnings.filterwarnings('ignore')
 
-
-
 net = GCN(34, 6, 2)
 print(net)
 G = build_karate_club_graph()
 print(G)
 
 inputs = torch.eye(34)
+
+# 只有第0和第33个点是标注的
 labeled_nodes = torch.tensor([0, 33])
 print(labeled_nodes)
 labels = torch.tensor([0, 1])
@@ -63,6 +63,9 @@ all_logits = []
 # nx.draw(nx_G, pos, with_labels=True, node_color=[[0.9,0.9,0.]])
 # plt.show()
 # plt.savefig('./graph1.png')
+
+# embed = nn.Embedding(34,5)
+# print(embed.weight)
 
 
 for epoch in range(20):
