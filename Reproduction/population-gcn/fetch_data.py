@@ -24,9 +24,14 @@ pipeline = 'cpac'
 
 # Input data variables
 num_subjects = 871  # Number of subjects
+<<<<<<< HEAD
 root_folder = './'
 data_folder = os.path.join(root_folder, 'ABIDE_pcp/cpac/filt_noglobal')
 print(data_folder)
+=======
+root_folder = '/path/to/data/'
+data_folder = os.path.join(root_folder, 'ABIDE_pcp/cpac/filt_noglobal')
+>>>>>>> e7562855e1f706942d8953c29b3407b05e111fa5
 
 # Files to fetch
 files = ['rois_ho']

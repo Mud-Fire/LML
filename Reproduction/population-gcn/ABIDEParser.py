@@ -30,7 +30,11 @@ from nilearn import connectome
 pipeline = 'cpac'
 
 # Input data variables
+<<<<<<< HEAD
 root_folder = './'
+=======
+root_folder = '/path/to/data/'
+>>>>>>> e7562855e1f706942d8953c29b3407b05e111fa5
 data_folder = os.path.join(root_folder, 'ABIDE_pcp/cpac/filt_noglobal')
 phenotype = os.path.join(root_folder, 'ABIDE_pcp/Phenotypic_V1_0b_preprocessed1.csv')
 

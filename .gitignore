@@ -9,7 +9,10 @@ data
 /Reproduction/Video-based AI for beat-to-beat assessment of cardiac function/EchoNet-Dynamic
 EchoNet-Dynamic
 .vscode
+<<<<<<< HEAD
 a4c-video-dir
 ABIDE_pcp
 /Reproduction/population-gcn/linear-graph-convolution-c6c3fb05912cbb5d04163601d3ca5ad9bba3923e.zip
 /Reproduction/Video-based AI for beat-to-beat assessment of cardiac function/dynamic/ge_insa_lyon_datasets_camus_dataset_2.tar
+=======
+>>>>>>> e7562855e1f706942d8953c29b3407b05e111fa5
