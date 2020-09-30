@@ -47,20 +47,32 @@ del c3
 
 def hypersearch_DL(x_data, y_data, method, nfolds, nevals, lrexp_range, l1rexp_range, dro_range,
                    units1_range, units2_range, alpha_range, batch_size, num_epochs):
+
+    # 使用 cross_validated 将 x , y 按照 nfolds 折数进行划分 x_train, y_train, x_test, y_test
+    # 然后传入 modelrun()
     @optunity.cross_validated(x=x_data, y=y_data, num_folds=nfolds)
     def modelrun(x_train, y_train, x_test, y_test, lrexp, l1rexp, dro, units1, units2, alpha):
+
+        # 调用 trainDL.py 的 DL_single_run() 方法
         cv_log = DL_single_run(xtr=x_train, ytr=y_train, units1=units1, units2=units2, dro=dro, lr=10 ** lrexp,
                                l1r=10 ** l1rexp, alpha=alpha, batchsize=batch_size, numepochs=num_epochs)
+        # 按照训练好的模型 进行测试集预测
         cv_preds = cv_log.model.predict(x_test, batch_size=1)[1]
+
+        # 计算一致性指数 (C-index) <- f(真实生存时间， 模型预测分数， 事件类型)
         cv_C = concordance_index(y_test[:, 1], -cv_preds, y_test[:, 0])
         return cv_C
 
+    # 求解 modelrun() 函数结果最大化值
+    # optunity.maximize(函数方法, 参数搜索值, 求解器名称="particle swarm", 函数要用的参数范围)
+    #
     optimal_pars, searchlog, _ = optunity.maximize(modelrun, num_evals=nevals, solver_name=method, lrexp=lrexp_range,
                                                    l1rexp=l1rexp_range, dro=dro_range, units1=units1_range,
                                                    units2=units2_range, alpha=alpha_range)
-
+    # 输出最优超参数，以及最大的modelrun()结果
     print('Optimal hyperparameters : ' + str(optimal_pars))
     print('Cross-validated C after tuning: %1.3f' % searchlog.optimum)
+
     return optimal_pars, searchlog
 
 
