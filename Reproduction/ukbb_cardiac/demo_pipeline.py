@@ -22,36 +22,36 @@ import shutil
 
 if __name__ == '__main__':
     # The GPU device id
-    CUDA_VISIBLE_DEVICES = 0
+    CUDA_VISIBLE_DEVICES = '2,3'
 
     # The URL for downloading demo data
     URL = 'https://www.doc.ic.ac.uk/~wbai/data/ukbb_cardiac/'
 
-    # Download demo images
-    print('Downloading demo images ...')
-    for i in [1, 2]:
-        if not os.path.exists('demo_image/{0}'.format(i)):
-            os.makedirs('demo_image/{0}'.format(i))
-        for seq_name in ['sa', 'la_2ch', 'la_4ch', 'ao']:
-            f = 'demo_image/{0}/{1}.nii.gz'.format(i, seq_name)
-            urllib.request.urlretrieve(URL + f, f)
+    # # Download demo images
+    # print('Downloading demo images ...')
+    # for i in [1, 2]:
+    #     if not os.path.exists('demo_image/{0}'.format(i)):
+    #         os.makedirs('demo_image/{0}'.format(i))
+    #     for seq_name in ['sa', 'la_2ch', 'la_4ch', 'ao']:
+    #         f = 'demo_image/{0}/{1}.nii.gz'.format(i, seq_name)
+    #         urllib.request.urlretrieve(URL + f, f)
 
-    # Download information spreadsheet
-    print('Downloading information spreadsheet ...')
-    if not os.path.exists('demo_csv'):
-        os.makedirs('demo_csv')
-    for f in ['demo_csv/blood_pressure_info.csv']:
-        urllib.request.urlretrieve(URL + f, f)
+    # # Download information spreadsheet
+    # print('Downloading information spreadsheet ...')
+    # if not os.path.exists('demo_csv'):
+    #     os.makedirs('demo_csv')
+    # for f in ['demo_csv/blood_pressure_info.csv']:
+    #     urllib.request.urlretrieve(URL + f, f)
 
     # Download trained models
-    print('Downloading trained models ...')
-    if not os.path.exists('trained_model'):
-        os.makedirs('trained_model')
-    for model_name in ['FCN_sa', 'FCN_la_2ch', 'FCN_la_4ch', 'FCN_la_4ch_seg4', 'UNet-LSTM_ao']:
-        for f in ['trained_model/{0}.meta'.format(model_name),
-                  'trained_model/{0}.index'.format(model_name),
-                  'trained_model/{0}.data-00000-of-00001'.format(model_name)]:
-            urllib.request.urlretrieve(URL + f, f)
+    # print('Downloading trained models ...')
+    # if not os.path.exists('trained_model'):
+    #     os.makedirs('trained_model')
+    # for model_name in ['FCN_sa', 'FCN_la_2ch', 'FCN_la_4ch', 'FCN_la_4ch_seg4', 'UNet-LSTM_ao']:
+    #     for f in ['trained_model/{0}.meta'.format(model_name),
+    #               'trained_model/{0}.index'.format(model_name),
+    #               'trained_model/{0}.data-00000-of-00001'.format(model_name)]:
+    #         urllib.request.urlretrieve(URL + f, f)
 
     # Analyse show-axis images
     print('******************************')
