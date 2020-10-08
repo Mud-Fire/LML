@@ -4,7 +4,7 @@ img = pydicom.read_file("F:/LML/LML/Reproduction/4Dsegment/chenyongjun/CHEN_YONG
 
 import matplotlib.pyplot as plt
 
-plt.imshow(img.pixel_array)
+# plt.imshow(img.pixel_array)
 
 # plt.show()
 
