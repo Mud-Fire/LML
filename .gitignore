@@ -20,3 +20,4 @@ ABIDE_pcp
 /Reproduction/ukbb_cardiac/demo_csv
 /Reproduction/ukbb_cardiac/demo_image
 /Reproduction/4Dsegment/chenyongjun
+/Reproduction/ConvLSTM/mnist_test_seq.npy
